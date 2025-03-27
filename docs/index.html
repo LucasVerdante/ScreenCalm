@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ScreenCalm is a Chrome extension that helps reduce visual triggers like motion and contrast, designed for people with screen intolerance, concussions, or brain injuries." />
+  <title>ScreenCalm - Reduce Screen Discomfort</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #222;
+      --footer-color: #777;
+      --button-bg: #0078d4;
+      --button-hover: #005fa3;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --footer-color: #aaa;
+      --button-bg: #1a73e8;
+      --button-hover: #4285f4;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 5rem 2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    img {
+      max-width: 640px;
+      height: auto;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 strong {
+      font-weight: 700;
+    }
+
+    p {
+      max-width: 640px;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin: 1rem 0;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--button-bg);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    .cta:hover {
+      background: var(--button-hover);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 1px solid var(--text-color);
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.875rem;
+      color: var(--footer-color);
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🔆 / 🌛</button>
+  <img src="banner.svg" alt="ScreenCalm banner" />
+  <h1><strong>Screen</strong><span style="font-weight:100">Calm</span></h1>
+  <p>
+    ScreenCalm is a free Chrome extension that adds a customizable overlay to reduce visual discomfort caused by motion, brightness, and contrast.
+    Ideal for people with screen intolerance, post-concussion symptoms, or sensitivity to digital screens.
+  </p>
+  <p>
+    Adjust overlay height, opacity, blur, and color to make screen time more comfortable.
+  </p>
+  <a class="cta" href="https://chrome.google.com/webstore/detail/YOUR-EXTENSION-ID-HERE" target="_blank" rel="noopener noreferrer">
+    Get <b>Screen</b>Calm
+  </a>
+
+  <footer>
+    <p>Open source on <a href="https://github.com/YOUR-USERNAME/screencalm" target="_blank">GitHub</a> • Licensed under MIT</p>
+  </footer>
+
+  <script>
+    // Apply user's system theme on load
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', initialTheme);
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+  </script>
+</body>
+</html>

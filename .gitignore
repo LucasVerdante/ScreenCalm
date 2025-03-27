@@ -1,0 +1,25 @@
+# OS / system files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Extension packaging
+*.crx
+*.zip
+
+# Build artifacts (if you ever add a build process)
+dist/
+build/
+
+# Node.js (only if you add tools later)
+node_modules/
+package-lock.json
+yarn.lock
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sw?

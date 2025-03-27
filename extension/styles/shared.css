@@ -1,0 +1,143 @@
+.screencalm-settings-container,
+.screencalm-settings-container * {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+
+.screencalm-settings-container {
+  width: 300px;
+  padding: 24px 12px;
+  background: #000;
+  color: #ccc;
+  font-size: 14px;
+}
+
+#screencalm-settings-container-body {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000001;
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.5));
+  border: 1px solid #333;
+  border-top-color: #555;
+  border-left-color: #555;
+  border-radius: 8px;
+}
+
+#screencalm-settings-section-header {
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+}
+  #screencalm-settings-section-header h1 {
+    margin-bottom: 8px;
+    font-weight: 100;
+    font-size: 24px;
+  }
+  #screencalm-settings-section-header label {
+    white-space: nowrap;
+    margin: 0;
+  }
+
+.screencalm-settings-container label {
+  display: block;
+  margin: 12px 0 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.screencalm-settings-container label div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+  #screencalm-value-display-blur,
+  #screencalm-value-display-edge,
+  #screencalm-value-display-height,
+  #screencalm-value-display-opacity {
+    color: #888888;
+    font-weight: normal;
+  }
+  #screencalm-input-height,
+  #screencalm-input-opacity,
+  #screencalm-input-edge,
+  #screencalm-input-blur,
+  #screencalm-input-color {
+    width: 100%;
+    cursor: pointer;
+  }
+  #screencalm-input-color {
+    height: 50px;
+  }
+
+.screencalm-settings-container h3 {
+  margin: 16px 0 10px;
+}
+
+.screencalm-settings-container p:first-of-type {
+  margin-bottom: 12px;
+}
+
+.screencalm-settings-container kbd {
+  background-color: #aaa;
+  border: 1px solid #555;
+  /* border-top-color: #eee; */
+  /* border-left-color: #eee; */
+  border-radius: 3px;
+  padding: 3px 4px 2px;
+  color: #111;
+}
+
+.screencalm-btn {
+  border: none;
+  background-color: #730;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+.screencalm-btn:hover {
+  background-color: #830;
+}
+
+#screencalm-settings-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000001;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: light;
+}
+
+#screencalm-settings-btn-close {
+  width: 100%;
+  margin-top: 24px;
+
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.screencalm-overlay {
+  position: fixed;
+  width: 100%;
+  inset: 0;
+  z-index: 1000000;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+#screencalm-overlay-top {
+  top: -25%;
+}
+
+#screencalm-overlay-bottom {
+  top: 100%;
+}
