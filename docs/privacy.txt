@@ -1,0 +1,28 @@
+ScreenCalm Browser Extension Privacy Policy
+===========================================
+
+ScreenCalm is committed to respecting your privacy.
+
+This extension is designed with simplicity, safety, and your wellbeing in mind — especially for individuals with screen sensitivity. Your data should stay yours, and we take that seriously.
+
+🛑 What ScreenCalm Does Not Do
+
+  ❌ Does not collect any personal information
+  ❌ Does not store any user data on external servers
+  ❌ Does not track your browsing activity
+  ❌ Does not use cookies or localStorage for analytics or tracking
+  ❌ Does not sell or share your information with third parties
+
+ScreenCalm operates entirely within your browser. All settings you configure (such as overlay height, color, or blur) are stored locally in your browser’s sync storage, and are never transmitted anywhere.
+
+🔐 Security
+
+ScreenCalm is open source. Anyone can inspect the code to verify how it works and confirm that it respects your privacy.
+
+The source code is available here:
+
+https://github.com/LucasVerdante/ScreenCalm
+
+✅ Summary
+
+ScreenCalm is built to help, not to harvest your data. You don’t need to create an account. We don’t track you. Your experience with the extension stays private, by design.

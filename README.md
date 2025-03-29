@@ -18,7 +18,7 @@ You can adjust the following:
 
 - **Height** of the visible screen area
 - **Opacity** of the overlay
-- **Edge blur**
+- **Edge sharpness**
 - **Background blur**
 - **Overlay color**
 

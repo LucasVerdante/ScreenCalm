@@ -31,24 +31,21 @@
   border-radius: 8px;
 }
 
-#screencalm-settings-section-header {
-  display: flex;
-  align-items: top;
-  justify-content: space-between;
+h1#screencalm-settings-title {
+  margin-bottom: 8px;
+  font-weight: 100;
+  font-size: 24px;
 }
-  #screencalm-settings-section-header h1 {
-    margin-bottom: 8px;
-    font-weight: 100;
-    font-size: 24px;
-  }
-  #screencalm-settings-section-header label {
-    white-space: nowrap;
-    margin: 0;
-  }
+
+.screencalm-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .screencalm-settings-container label {
   display: block;
-  margin: 12px 0 8px;
+  margin: 12px 0 10px;
   cursor: pointer;
   font-weight: 600;
 }
@@ -76,6 +73,56 @@
     height: 50px;
   }
 
+/* Toggle container */
+.screencalm-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+/* Hide the default checkbox */
+.screencalm-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.screencalm-toggle .screencalm-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: background-color 0.2s;
+  border-radius: 24px;
+}
+
+/* The circle */
+.screencalm-toggle .screencalm-toggle-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: transform 0.2s;
+  border-radius: 50%;
+}
+
+/* Checked state */
+.screencalm-toggle input:checked + .screencalm-toggle-slider {
+  background-color: #0088ff;
+}
+
+.screencalm-toggle input:checked + .screencalm-toggle-slider::before {
+  transform: translateX(24px);
+}
+
 .screencalm-settings-container h3 {
   margin: 16px 0 10px;
 }
@@ -87,17 +134,19 @@
 .screencalm-settings-container kbd {
   background-color: #aaa;
   border: 1px solid #555;
-  /* border-top-color: #eee; */
-  /* border-left-color: #eee; */
-  border-radius: 3px;
-  padding: 3px 4px 2px;
+  border-radius: 4px;
+  padding: 1px 2px;
   color: #111;
+}
+.screencalm-settings-container kbd:last-child {
+  padding: 1px 4px;
 }
 
 .screencalm-btn {
   border: none;
   background-color: #730;
   font-family: sans-serif;
+  color: #ccc;
   cursor: pointer;
 }
 .screencalm-btn:hover {
@@ -122,7 +171,6 @@
   padding: 8px 16px;
   font-size: 18px;
   font-weight: 600;
-  color: #ccc;
 }
 
 .screencalm-overlay {

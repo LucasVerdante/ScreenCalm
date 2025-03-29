@@ -1,7 +1,7 @@
 {
 	"name": "ScreenCalm",
 	"description": "Reduce screen motion, contrast, and visual noise for people with screen intolerance.",
-	"version": "1.1.0",
+	"version": "1.0.0",
 	"manifest_version": 3,
 	"action": {
 		"default_popup": "popup.html",
@@ -18,13 +18,20 @@
 				"default": "Alt+Shift+S",
 				"mac": "Alt+Shift+S"
 			},
-			"description": "Toggle screen overlay on current tab"
+			"description": "Toggle screen overlays on current tab"
+		},
+		"toggle-options": {
+			"suggested_key": {
+				"default": "Alt+Shift+O",
+				"mac": "Alt+Shift+O"
+			},
+			"description": "Open settings panel"
 		}
 	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["scripts/screencalm.js", "scripts/content.js"],
+			"js": ["scripts/shared.js", "scripts/content.js"],
 			"css": ["styles/shared.css"]
 		}
 	],
