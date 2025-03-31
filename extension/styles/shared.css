@@ -23,7 +23,7 @@
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1000001;
+  z-index: 1000002;
   filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.5));
   border: 1px solid #333;
   border-top-color: #555;
@@ -143,14 +143,14 @@ h1#screencalm-settings-title {
 }
 
 .screencalm-btn {
-  border: none;
-  background-color: #730;
+  border: 1px solid #59320F;
+  background-color: #fbd7aa;
   font-family: sans-serif;
-  color: #ccc;
+  color: #59320F;
   cursor: pointer;
 }
 .screencalm-btn:hover {
-  background-color: #830;
+  background-color: #FFC780;
 }
 
 #screencalm-settings-btn {
@@ -159,8 +159,12 @@ h1#screencalm-settings-title {
   right: 10px;
   z-index: 1000001;
   border-radius: 6px;
-  padding: 6px 12px;
+  padding: 4px 6px;
   font-weight: light;
+}
+#screencalm-settings-btn img {
+  width: 16px;
+  height: 16px;
 }
 
 #screencalm-settings-btn-close {

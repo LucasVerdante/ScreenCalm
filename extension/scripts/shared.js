@@ -6,7 +6,7 @@
 		edge: 85,
 		blur: 3,
 		color: "#000000",
-		showSettingsBtn: true,
+		pinSettingsBtn: true,
 	};
 	const SETTING_KEYS = [
 		"enabled",
@@ -15,7 +15,7 @@
 		"edge",
 		"blur",
 		"color",
-		"showSettingsBtn",
+		"pinSettingsBtn",
 	];
 	const IDS = {
 		INPUT_BLUR: "screencalm-input-blur",
@@ -25,7 +25,7 @@
 		INPUT_HEIGHT: "screencalm-input-height",
 		INPUT_OPACITY: "screencalm-input-opacity",
 		INPUT_PREFIX: "screencalm-input-",
-		INPUT_SHOW_SETTINGS_BTN: "screencalm-input-showSettingsBtn",
+		INPUT_PIN_SETTINGS_BTN: "screencalm-input-pinSettingsBtn",
 		OVERLAY_BOTTOM: "screencalm-overlay-bottom",
 		OVERLAY_TOP: "screencalm-overlay-top",
 		SETTINGS_BTN_CLOSE: "screencalm-settings-btn-close",
@@ -124,32 +124,6 @@
 		attachInputListeners();
 	};
 
-	const toggleSettingsButton = ({ showSettingsBtn }) => {
-		const existingSettingsButton = document.getElementById(IDS.SETTINGS_BTN);
-
-		if (existingSettingsButton && !showSettingsBtn) {
-			existingSettingsButton.remove();
-
-			return;
-		}
-
-		const isInBody = window.location.pathname !== "/popup.html";
-
-		if (showSettingsBtn && isInBody) {
-			const settingsBtn = document.createElement("button");
-
-			settingsBtn.id = window.screenCalm.IDS.SETTINGS_BTN;
-			settingsBtn.className = window.screenCalm.CLASS_NAMES.BTN;
-			settingsBtn.innerHTML = "<b>Screen</b>Calm";
-
-			settingsBtn.addEventListener("click", () => {
-				injectSettingsPanel();
-			});
-
-			document.body.appendChild(settingsBtn);
-		}
-	};
-
 	const makeSettingsHtml = ({ withCloseButton = false }) => {
 		const closeBtn = `
 			<button
@@ -198,11 +172,11 @@
 			</div>
 
 			<div class="screencalm-toggle-row">
-				<label for="${IDS.INPUT_SHOW_SETTINGS_BTN}">
+				<label for="${IDS.INPUT_PIN_SETTINGS_BTN}">
 					📌 Options Button
 				</label>
 				<label class="screencalm-toggle">
-					<input type="checkbox" id="${IDS.INPUT_SHOW_SETTINGS_BTN}" />
+					<input type="checkbox" id="${IDS.INPUT_PIN_SETTINGS_BTN}" />
 					<span class="screencalm-toggle-slider"></span>
 				</label>
 			</div>
@@ -290,16 +264,6 @@
 		`;
 	};
 
-	const screenCalm = {
-		IDS,
-		CLASS_NAMES,
-		makeSettingsHtml,
-		loadSettings,
-		attachInputListeners,
-		toggleSettingsButton,
-		injectSettingsPanel,
-	};
-
 	const redrawOverlays = ({ enabled, height, opacity, edge, blur, color }) => {
 		const overlayTop = document.getElementById(IDS.OVERLAY_TOP);
 		const overlayBottom = document.getElementById(IDS.OVERLAY_BOTTOM);
@@ -348,6 +312,45 @@
 		if (displayBlur) displayBlur.innerText = `${blur}px`;
 	};
 
+	const toggleSettingsBtn = ({ enabled, pinSettingsBtn }) => {
+		const existingSettingsBtn = document.getElementById(IDS.SETTINGS_BTN);
+		const isInBody = window.location.pathname !== "/popup.html";
+
+		if (existingSettingsBtn) {
+			if (enabled && pinSettingsBtn) {
+				return;
+			}
+
+			if (!enabled && !pinSettingsBtn) {
+				existingSettingsBtn.remove();
+
+				return;
+			}
+		} else {
+			if (!isInBody) {
+				return;
+			}
+
+			if (enabled || pinSettingsBtn) {
+				const icon = document.createElement("img");
+				icon.src = chrome.runtime.getURL("icons/icon-settings-btn.svg");
+				icon.alt = "";
+
+				const settingsBtn = document.createElement("button");
+				settingsBtn.id = window.screenCalm.IDS.SETTINGS_BTN;
+				settingsBtn.className = window.screenCalm.CLASS_NAMES.BTN;
+				// settingsBtn.innerHTML = "<b>Screen</b>Calm";
+				settingsBtn.setAttribute("aria-label", "Open ScreenCalm Options");
+				settingsBtn.appendChild(icon);
+				settingsBtn.addEventListener("click", () => {
+					injectSettingsPanel();
+				});
+
+				document.body.appendChild(settingsBtn);
+			}
+		}
+	};
+
 	const updateAllVisuals = ({
 		enabled = SETTING_DEFAULTS.enabled,
 		height = SETTING_DEFAULTS.height,
@@ -355,7 +358,7 @@
 		edge = SETTING_DEFAULTS.edge,
 		blur = SETTING_DEFAULTS.blur,
 		color = SETTING_DEFAULTS.color,
-		showSettingsBtn = SETTING_DEFAULTS.showSettingsBtn,
+		pinSettingsBtn = SETTING_DEFAULTS.pinSettingsBtn,
 	}) => {
 		redrawOverlays({
 			enabled,
@@ -366,7 +369,7 @@
 			color,
 		});
 
-		toggleSettingsButton({ showSettingsBtn });
+		toggleSettingsBtn({ enabled, pinSettingsBtn });
 
 		updateValueDisplays({
 			height,
@@ -376,7 +379,18 @@
 		});
 	};
 
-	// Add screenCalm to window for other scripts to access
+	// Add ScreenCalm to window
+	// This allows us to reuse the same functions
+	// in the separate popup and browser tab windows
+	const screenCalm = {
+		IDS,
+		CLASS_NAMES,
+		makeSettingsHtml,
+		loadSettings,
+		attachInputListeners,
+		toggleSettingsBtn,
+		injectSettingsPanel,
+	};
 	if (!window.screenCalm) {
 		window.screenCalm = screenCalm;
 	}
