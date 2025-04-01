@@ -36,7 +36,7 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    img {
+    #banner {
       max-width: 640px;
       height: auto;
       margin-bottom: 2rem;
@@ -93,24 +93,25 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
       margin-top: 4rem;
     }
 
     .screenshot-gallery img {
-      max-width: 100%;
+      max-width: 640px;
       cursor: pointer;
       transition: transform 0.2s;
+      border: 1px solid #aaa;
+      border-radius: 8px;
     }
 
     .screenshot-gallery img:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .screenshot-caption {
       font-size: 0.95rem;
       color: var(--text-color);
-      margin-top: 0.5rem;
+      margin: 0.25rem 0 4rem;
       max-width: 640px;
     }
 
@@ -123,15 +124,20 @@
 </head>
 <body>
   <button class="theme-toggle" onclick="toggleTheme()">🔆 / 🌛</button>
-  <img src="banner.svg" alt="ScreenCalm banner" />
+
+  <img id="banner" src="banner.svg" alt="ScreenCalm banner" />
+
   <h1><strong>Screen</strong><span style="font-weight:100">Calm</span></h1>
+
   <p>
     ScreenCalm is a free Chrome extension that adds a customizable overlay to reduce visual discomfort caused by motion, brightness, and contrast.
     Ideal for people with screen intolerance, post-concussion symptoms, or sensitivity to digital screens.
   </p>
+
   <p>
     Adjust overlay height, opacity, blur, and color to make screen time more comfortable.
   </p>
+
   <a class="cta" href="https://chrome.google.com/webstore/detail/YOUR-EXTENSION-ID-HERE" target="_blank" rel="noopener noreferrer">
     Get <b>Screen</b>Calm
   </a>
@@ -140,26 +146,25 @@
     <a href="screenshot-1.png" target="_blank">
       <img src="screenshot-1.png" alt="Screenshot 1" />
     </a>
-    <div class="screenshot-caption">ScreenCalm adds an button to adjust settings in the top right corner of the page.</div>
+    <div class="screenshot-caption">Bright contrasts and motion can cause discomfort in people that suffer from screen intolerance.</div>
 
     <a href="screenshot-2.png" target="_blank">
       <img src="screenshot-2.png" alt="Screenshot 2" />
     </a>
-    <div class="screenshot-caption">The ScreenCalm settings panel</div>
+    <div class="screenshot-caption">ScreenCalm adds an adjustable overlay that allows the user to narrow focus and filter out discomfort causing visuals.</div>
 
     <a href="screenshot-3.png" target="_blank">
       <img src="screenshot-3.png" alt="Screenshot 3" />
     </a>
-    <div class="screenshot-caption">ScreenCalm overlays enabled, settings panel open.</div>
-
-    <a href="screenshot-4.png" target="_blank">
-      <img src="screenshot-4.png" alt="Screenshot 4" />
-    </a>
-    <div class="screenshot-caption">ScreenCalm overlays enabled, settings panel closed.</div>
+    <div class="screenshot-caption">Adjust color, height, opacity, edge, and background blur.</div>
   </div>
 
+  <a class="cta" href="https://chrome.google.com/webstore/detail/YOUR-EXTENSION-ID-HERE" target="_blank" rel="noopener noreferrer">
+    Get <b>Screen</b>Calm
+  </a>
+
   <footer>
-    <p>Open source on <a href="https://github.com/YOUR-USERNAME/screencalm" target="_blank">GitHub</a> • Licensed under MIT</p>
+    <p>Open source on <a href="https://github.com/LucasVerdante/screencalm" target="_blank">GitHub</a> • Licensed under MIT</p>
   </footer>
 
   <script>
